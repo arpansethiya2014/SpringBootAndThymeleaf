@@ -1,5 +1,5 @@
 package com.arp.SpringBootWithJSP.service;
-
+import java.util.*;
 import com.arp.SpringBootWithJSP.entity.*;
 public interface StudentRegistrationService {
 
@@ -7,4 +7,7 @@ public interface StudentRegistrationService {
 
   StudentRegistration findByMobile(String mobile);
 	
+  List<StudentRegistration> findAll();
+  
+  void deleteByStudentId(Long studentId);
 }

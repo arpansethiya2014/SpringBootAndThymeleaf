@@ -36,6 +36,44 @@
 </nav>
   
 <div class="container">
+
+<div class="row" style="margin-right: 45%;">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="alert alert-info" role="alert" th:if="${msg}"
+						th:utext="${msg}"></div>
+				</div>
+			</div>
+<h2>Student Details</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Father Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>DOB</th>
+        <th>Gender</th>
+        <th>Course</th>
+        <th>Registration Date</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="student : ${student}">
+        <td><span th:text="${student.name}"></span></td>
+        <td><span th:text="${student.fatherName}"></span></td>
+        <td><span th:text="${student.email}"></span></td>
+        <td><span th:text="${student.mobile}"></span></td>
+        <td><span th:text="${student.dob}"></span></td>
+        <td><span th:text="${student.gender}"></span></td>
+        <td><span th:text="${student.course}"></span></td>
+        <td><span th:text="${student.date}"></span></td>
+        <td><span th:text="${student.address}"></span>,<span th:text="${student.city}"></span><span th:text="${student.state}"></span><span th:text="${student.pincode}"></span></td>
+        <td><a th:href="@{/home/studentDetails/{studentId}(studentId=${student.studentId})}" class="btn btn-danger">Delete</a></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 </body>
