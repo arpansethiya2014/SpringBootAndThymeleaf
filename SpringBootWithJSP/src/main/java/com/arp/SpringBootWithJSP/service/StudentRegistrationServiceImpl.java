@@ -1,6 +1,7 @@
 package com.arp.SpringBootWithJSP.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,11 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
 	@Override
 	public void deleteByStudentId(Long studentId) {
 		studentRegistrationRepository.deleteById(studentId);
+	}
+
+	@Override
+	public Optional<StudentRegistration> findById(Long studentId) {
+		return studentRegistrationRepository.findById(studentId);
 	}
 
 }

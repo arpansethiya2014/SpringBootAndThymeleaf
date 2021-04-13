@@ -10,4 +10,6 @@ public interface StudentRegistrationService {
   List<StudentRegistration> findAll();
   
   void deleteByStudentId(Long studentId);
+  
+  Optional<StudentRegistration> findById(Long studentId);
 }

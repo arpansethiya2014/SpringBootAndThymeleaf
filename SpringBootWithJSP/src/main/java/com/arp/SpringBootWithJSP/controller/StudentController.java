@@ -77,7 +77,19 @@ public class StudentController {
 		}
 		return model;
 	}
-	
+
+	@RequestMapping(value = { "/home/studentDetailsById/{studentId}" }, method = RequestMethod.GET)
+	public ModelAndView studentDetailsById(@PathVariable(value = "studentId") Long studentId) {
+		ModelAndView model = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		model.addObject("userName", user.getFirstname() + " " + user.getLastname());
+		Optional<StudentRegistration> studentRegistration = studentService.findById(studentId);
+		model.addObject("studentRegistration", studentRegistration);
+		model.setViewName("home/updateStudentDetails");
+		return model;
+	}
+
 	@RequestMapping(value = { "/home/studentDetails/{studentId}" }, method = RequestMethod.GET)
 	public ModelAndView deleteStudent(@PathVariable(value = "studentId") Long studentId) {
 		System.out.println("Student Id : " + studentId);
@@ -90,7 +102,37 @@ public class StudentController {
 		model.addObject("student", list);
 		model.addObject("msg", "Remove Student Details!");
 		model.setViewName("home/studentDetails");
-	   return model;
+		return model;
+	}
+
+	@RequestMapping(value = { "/home/studentDetailUpdate" }, method = RequestMethod.POST)
+	public ModelAndView studentDetailUpdate(@Valid StudentRegistration studentRegistration) {
+		ModelAndView model = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		model.addObject("userName", user.getFirstname() + " " + user.getLastname());
+		Optional<StudentRegistration> studentExists = studentService.findById(studentRegistration.getStudentId());
+		if (studentExists.isPresent()) {
+			StudentRegistration registration = studentExists.get();
+			registration.setName(studentRegistration.getName());
+			registration.setFatherName(studentRegistration.getFatherName());
+			registration.setEmail(studentRegistration.getEmail());
+			registration.setMobile(studentRegistration.getMobile());
+			registration.setDob(studentRegistration.getDob());
+			registration.setState(studentRegistration.getState());
+			registration.setCity(studentRegistration.getCity());
+			registration.setAddress(studentRegistration.getAddress());
+			registration.setPincode(studentRegistration.getPincode());
+			registration.setCourse(studentRegistration.getCourse());
+			registration.setGender(studentRegistration.getGender());
+			//registration.setDate(studentRegistration.getDate());
+			studentService.saveStudent(registration);
+			model.addObject("msg", "Student Details Updated!");
+			List<StudentRegistration> list = studentService.findAll();
+			model.addObject("student", list);
+			model.setViewName("home/studentDetails");
+		}
+
+		return model;
 	}
 }
- 
