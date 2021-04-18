@@ -50,4 +50,11 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
 		return studentRegistrationRepository.findById(studentId);
 	}
 
+	@Override
+	public Long countTotalStudent() {
+		return studentRegistrationRepository.count();
+	}
+	
+	
+
 }

@@ -6,7 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.*;
 
@@ -30,7 +29,6 @@ public class StudentRegistration {
 	private String course;
 	private String gender;
 
-	@DateTimeFormat(pattern = "dd-mm-yyyy")
 	private Date date;
 
 	public StudentRegistration() {

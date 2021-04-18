@@ -37,7 +37,7 @@ public class SendMail {
 
 			// first part (the html)
 			BodyPart messageBodyPart = new MimeBodyPart();
-			String table = "<table style=\"width:40%\" border=\"1\"><tr ><th>Name</th><td>"
+			String table = "<table style=\"width:50%\" border=\"1\"><tr ><th>Name</th><td>"
 					+ studentRegistration.getName() + "</td></tr><tr><th>Father Name</th><td>"
 					+ studentRegistration.getFatherName() + "</td></tr><tr><th>Mobile</th><td>"
 					+ studentRegistration.getMobile() + "</td></tr><tr><th>Course</th><td>"
@@ -45,7 +45,7 @@ public class SendMail {
 					+ studentRegistration.getAddress() + " , " + studentRegistration.getCity()
 					+ "</td></tr><tr><th>Gender</th><td>" + studentRegistration.getGender() + "</td></tr></table>";
 			String htmlText = "<H2>Dear " + studentRegistration.getName() + ",</H2><H5>" + msg + "</H5><center>" + table
-					+ "</center<br><img width=\"40%\" height=\"40%\" src=\"cid:image\">";
+					+ "</center<br><img width=\"70%\" height=\"40%\" src=\"cid:image\">";
 			messageBodyPart.setContent(htmlText, "text/html");
 			// add it
 			multipart.addBodyPart(messageBodyPart);

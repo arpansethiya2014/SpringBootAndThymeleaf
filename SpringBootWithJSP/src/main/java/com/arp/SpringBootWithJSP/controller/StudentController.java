@@ -125,7 +125,7 @@ public class StudentController {
 			registration.setPincode(studentRegistration.getPincode());
 			registration.setCourse(studentRegistration.getCourse());
 			registration.setGender(studentRegistration.getGender());
-			//registration.setDate(studentRegistration.getDate());
+			// registration.setDate(studentRegistration.getDate());
 			studentService.saveStudent(registration);
 			model.addObject("msg", "Student Details Updated!");
 			List<StudentRegistration> list = studentService.findAll();
@@ -135,4 +135,5 @@ public class StudentController {
 
 		return model;
 	}
+
 }

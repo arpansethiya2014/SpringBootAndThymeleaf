@@ -12,4 +12,6 @@ public interface StudentRegistrationService {
   void deleteByStudentId(Long studentId);
   
   Optional<StudentRegistration> findById(Long studentId);
+  
+  Long countTotalStudent();
 }
