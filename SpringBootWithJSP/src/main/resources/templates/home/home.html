@@ -157,7 +157,7 @@ i.icon-2x {
 		</div>
 	</nav>
 
-	<div class="container"></div>
+	<div class="container">
 	<div class="container bootstrap snippets bootdey">
 		<div class="row margin-bottom-10">
 			<div class="col-md-4 col-sm-6">
@@ -184,32 +184,10 @@ i.icon-2x {
 				</div>
 			</div>
 		</div>
-
-
-		<!-- <div class="row margin-bottom-10">
-			<div class="col-sm-6">
-				<div class="servive-block servive-block-purple">
-					<i class="icon-2x color-light fa fa-globe"></i>
-					<h2 class="heading-md">Purple Box</h2>
-					<p>Donec id elit non mi porta gravida at eget metus id elit mi
-						egetine. Fusce dapibus. At vero eos et accusamus et iusto odio
-						dignissimos ducimus qui.</p>
-				</div>
-			</div>
-			<div class="col-sm-6">
-				<div class="servive-block rounded servive-block-aqua">
-					<i class="icon-2x color-light fa fa-taxi"></i>
-					<h2 class="heading-md">Aqua Box</h2>
-					<p>Donec id elit non mi porta gravida at eget metus id elit mi
-						egetine. Fusce dapibus. At vero eos et accusamus et iusto odio
-						dignissimos ducimus qui.</p>
-				</div>
-			</div>
-		</div> -->
-	
-	
-    <figure class="highcharts-figure">
+ </div>
+	 <figure class="highcharts-figure">
         <div id="container-bar"></div>
+        <div id="container-bar2"></div>
     </figure>
     <script type="text/javascript">
         $(document).ready(
@@ -237,7 +215,7 @@ i.icon-2x {
                     styledMode : true
                 },
                 title : {
-                    text : 'Total Admission'
+                    text : 'Month Wise Admission'
                 },
                 xAxis : [ {
                     title : {
@@ -257,6 +235,54 @@ i.icon-2x {
             });
         }
     </script>
+    <script type="text/javascript">
+        $(document).ready(
+                function() {
+                    $.ajax({
+                        url : "/get-monthData",
+                        success : function(result) {
+                            var yearDtls = [];
+                            var countDtls = [];
+                            console.log(result);
+                            Object.keys(result).forEach(
+                                    function(key) {
+                                        yearDtls.push(key);
+                                        countDtls.push(result[key]);
+                                    });
+                            drawChart2(yearDtls, countDtls);
+                        }
+                    });
+                });
+ 
+        function drawChart2(year, viewCounts) {
+            Highcharts.chart('container-bar2', {
+                chart : {
+                    type : 'column',
+                    styledMode : true
+                },
+                title : {
+                    text : 'Day Wise Admission'
+                },
+                xAxis : [ {
+                    title : {
+                        text : 'Year'
+                    },
+                    categories : year
+                } ],
+                yAxis : [ {
+                    className : 'highcharts-color-0',
+                    title : {
+                        text : 'Total Student'
+                    }
+                } ],
+                series : [ {
+                    data : viewCounts
+                } ]
+            });
+        }
+    </script>
+   
     </div>
+    
 </body>
 </html>
