@@ -26,7 +26,7 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
 	@Override
 	public void saveStudent(StudentRegistration studentRegistration) {
 		studentRegistration.setDate(CurrentDate.getCurrentDate());
-		//SendMail.send(userName,password,studentRegistration);
+	//	SendMail.send(userName,password,studentRegistration);
 		studentRegistrationRepository.save(studentRegistration);
 	}
 
